@@ -1,0 +1,78 @@
+paths:
+  /vatRate/all/{wl}:
+    get:
+      tags:
+        - VatRate
+      summary: Get vat rates by white label
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/VatRate"
+  /vatRate/{id}:
+    get:
+      tags:
+        - VatRate
+      summary: Get vat rate by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/VatRate"
+    put:
+      tags:
+        - VatRate
+      summary: Put vat rate
+      parameters:
+        schema:
+          "$ref": "#/definitions/VatRate"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/VatRate"
+    delete:
+      tags:
+        - VatRate
+      summary: Delete a vat rate
+      parameters:
+        schema:
+          $ref: "#/definitions/VatRate"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/VatRate"
+  /vatRate/:
+    post:
+      tags:
+        - VatRate
+      summary: Post vat rate
+      parameters:
+        schema:
+          $ref: "#/definitions/VatRate"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/VatRate"
+definitions:
+  VatRate:
+    required:
+      - _id
+      - rate
+      - wl
+      - codeCompta
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      rate:
+        type: number
+      wl:
+        type: number
+      codeCompta:
+        type: string
+  VatRates:
+    type: array
+    $ref: "#/definitions/VatRate"

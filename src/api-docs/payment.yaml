@@ -1,0 +1,82 @@
+paths:
+  /payment/all/{wl}:
+    get:
+      tags:
+        - Payment
+      summary: Get payments by white label
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Payment"
+  /payment/{id}:
+    get:
+      tags:
+        - Payment
+      summary: Get payment by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Payment"
+    put:
+      tags:
+        - Payment
+      summary: Put payment
+      parameters:
+        schema:
+          $ref: "#/definitions/Payment"
+      responses:
+        200:
+          description": OK
+          schema:
+            $ref: "#/definitions/Payment"
+    delete:
+      tags:
+        - Payment
+      summary: Delete payment
+      parameters:
+        schema:
+          $ref: "#/definitions/Payment"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Payment"
+  /payment:
+    post:
+      tags:
+        - Payment
+      summary: Post payment
+      parameters:
+        schema":
+          $ref: "#/definitions/Payment"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Payment"
+definitions:
+  Payment:
+    required:
+      - _id
+      - key
+      - name
+      - wl
+      - codeCompta
+    properties:
+      _id":
+        type: string
+        uniqueItems: true
+      key:
+        type: string
+        uniqueItems: true
+      name:
+        type: string
+      wl:
+        type: number
+      codeCompta:
+        type: string
+  Payments:
+    type: array
+    $ref: "#/definitions/Payment"

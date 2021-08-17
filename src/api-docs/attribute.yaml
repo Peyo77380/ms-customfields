@@ -1,0 +1,113 @@
+paths:
+  /attributes/{id}:
+    get:
+      tags:
+        - Attribute
+      summary: Get attribute by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Attribute"
+    put:
+      tags:
+        - Attribute
+      summary: Put attribute data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to update
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Attribute"
+    delete:
+      tags:
+        - Attribute
+      summary: Delete attribute data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to create
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Attribute"
+  /attributes/{wl}/{lang}:
+    get:
+      tags:
+        - Attribute
+      summary: Get attributes list by white label and language
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Attribute"
+  /attributes/:
+    post:
+      tags:
+        - Attribute
+      summary: Post new attribute data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to create
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Attribute"
+definitions:
+  Attribute:
+    type: object
+    required:
+      - _id
+      - datas
+      - wl
+      - typeData
+      - key
+      - name
+      - lang
+    properties:
+      _id:
+        type: string,
+        uniqueItems: true
+      datas:
+        oneOf:
+          - $ref: "#/definitions/Data"
+          - $ref: "#/definitions/DatasArray"
+        discriminator:
+          propertyName: typeData
+          mapping:
+            freefield: "#/definitions/Data"
+            multi: "#/definitions/DatasArray"
+      wl:
+        type: number
+      typeData:
+        type: string
+      key:
+        type: string
+      name:
+        type: string
+      lang:
+        type: string
+  Data:
+    type: object
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      text:
+        type: string"
+  DatasArray:
+    - type: array
+      items:
+        $ref: "#/definitions/Data"

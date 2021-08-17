@@ -1,0 +1,31 @@
+paths:
+  /global:
+    get:
+      tags:
+        - Global
+      summary: Get globals
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Global"
+definitions:
+  Global:
+    required:
+      - id
+      - value
+      - lang
+      - class
+      - initial
+    properties:
+      _id:
+        type: Number
+        uniqueItems: true
+      value:
+        type: string
+      lang:
+        type: string
+      class:
+        type: string
+      initial:
+        type: string

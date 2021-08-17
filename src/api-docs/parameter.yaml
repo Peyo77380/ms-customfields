@@ -1,0 +1,85 @@
+paths:
+  /api/parameter/{id}:
+    get:
+      tags:
+        - Parameter
+      summary: Get Parameter by id
+      responses:
+        200:
+          description: OK
+          schema: 
+            $ref: "#/definitions/Parameter"
+    put: 
+      tags:
+        - Parameter
+      parameters:
+        - in: body
+          name: data
+          description: Parameters to be updated
+          schema:
+            $ref: "#/definitions/Parameter"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Parameter"
+  /api/parameter/{wl}/{lang}:
+    get:
+      tags:
+        - Parameter
+      summary: Returns all the parameters that match the white label and language specified
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items: 
+              $ref: "#/definitions/Parameter"
+  /api/parameter/{wl}/{lang}/{section}:
+    get:
+      tags:
+        - Parameter
+      summary: Returns all the parameters that match the white label, the language and the section specified
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items: 
+              $ref: "#/definitions/Parameter"
+  /api/parameter/{wl}/{lang}/key/{key}:
+    get:
+      tags:
+        - Parameter
+      summary: Returns all the parameters that match the white label, the language and the key specified
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items: 
+              $ref: "#/definitions/Parameter"
+definitions:
+  Parameter:
+    required:
+      - _id
+      - section
+      - wl
+      - key
+      - lang
+      - info
+      - value
+    properties:
+      _id :
+        type: string
+        uniqueItems: true
+      section:
+        type: number
+      wl:
+        type: number
+      key:
+        type: string
+      info:
+        type: string
+      value:
+        type: string

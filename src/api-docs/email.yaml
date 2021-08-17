@@ -1,0 +1,88 @@
+paths:
+  /email/{wl}/{lang}:
+    get:
+      tags:
+        - Email
+      summary: Get emails by white label and language
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Email"
+  /email/{id}:
+    get:
+      tags:
+        - Email
+      summary: Get email by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Email"
+    put:
+      tags:
+        - Email
+      summary: Modify email by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Email"
+  /email/:
+    post:
+      tags:
+        - Email
+      summary: Post e-mail
+      parameters:
+        name: email
+        in: body
+        description: Email that we want to create
+        schema:
+          $ref: "#/definitions/Email"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Email"
+definitions:
+  Email:
+    required:
+      - _id
+      - section
+      - key
+      - wl
+      - lang
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      section:
+        type: number
+      wl:
+        type: number
+      key:
+        type: string
+      info:
+        type: array
+        items:
+          type: object
+          properties:
+          _id:
+            type: string
+          text:
+            type: string
+      email:
+        type: object
+        properties:
+          description:
+            type: string
+          content:
+            type: string
+          emailsincopy:
+            type: array
+            items:
+              type: string
+          emailsincopyhidden:
+            type: array
+            items:
+              type: string

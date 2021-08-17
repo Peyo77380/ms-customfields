@@ -1,0 +1,36 @@
+{
+  "server": {
+    "port": "3000",
+    "hostname": "ms-customfields"
+  },
+  "log": {
+    "level": "debug"
+  },
+  "cache": {
+    "hostname": "redis",
+    "port": "6379",
+    "vat": {
+      "get": "getVatRate",
+      "byWl": "WL_VatRate"
+    },
+    "payment": {
+      "get": "getPayment",
+      "byWl": "WL_Payment"
+    },
+    "list": {
+      "get": "getList",
+      "byWL_Lang_Key": "WL_Lang_Key",
+      "byWL_Lang": "WL_Lg_List"
+    },
+    "parameter": {
+      "get": "getParameter",
+      "byWL_Lang": "WL_Lg_Parameter",
+      "byS_WL_LANG": "S_WL_Lg_Parameter",
+      "byK_WL_LANG": "K_WL_Lg_Parameter"
+    },
+    "attribute": {
+      "get": "getAttribute",
+      "byWL_Lang": "WL_Lg_Attribute"
+    }
+  }
+}

@@ -1,0 +1,141 @@
+paths:
+  /list/{wl}/{lang}/{key}/:
+    get:
+      tags:
+        - List
+      summary: Get lists by section, white label and language
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/List"
+  /list/{wl}/{lang}:
+    get:
+      tags:
+        - List
+      summary: Get lists by white label and language
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/ListResponse"
+  /list/{id}:
+    get:
+      tags:
+        - List
+      summary: Get list by id
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/List"
+  /list/data/{id}:
+    post:
+      tags:
+        - List
+      summary: Post list data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to create
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/List"
+    put:
+      tags:
+        - List
+      summary: Put list data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to create
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/List"
+    delete:
+      tags:
+        - List
+      summary: Delete list data
+      parameters:
+        - in: body
+          name: data
+          description: Data that we want to create
+          schema:
+            $ref: "#/definitions/Data"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/List"
+definitions:
+  List:
+    required:
+      - _id
+      - section
+      - key
+      - wl
+      - lang
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      section:
+        type: number
+      wl:
+        type: number
+      key:
+        type: string
+      datas:
+        type: array
+        items:
+          type: object
+          properties:
+            _id:
+              type: string
+            text:
+              type: string
+      info:
+        type: array
+        items:
+          type: object
+          properties:
+            _id:
+              type: string
+            text:
+              type: string
+  ListResponse:
+    required:
+      - _id
+      - wl
+      - lang
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      section:
+        type: number
+      wl:
+        type: number
+      key:
+        type: string
+      count:
+        type: number
+  Data:
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      text:
+        type: string
+
+  Lists:
+    type: array
+    $ref: "#/definitions/List"
